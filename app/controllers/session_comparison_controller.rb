@@ -25,5 +25,11 @@ class SessionComparisonController < ApplicationController
     @compare_cache_key = "compare_page_#{@ids[0]}_#{@ids[1]}"
 
     @comparison = ReportComparison.new(@reports[0], @reports[1])
+
+    respond_to do |format|
+      format.html
+      # format.json { render json: {"reports" => @comparison, "features" => @comparison.features, "test_case_pairs" => @comparison.test_case_pairs } }
+      format.json { render json: @comparison }
+    end
   end
 end
